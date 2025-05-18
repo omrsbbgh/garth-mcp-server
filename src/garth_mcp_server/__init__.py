@@ -6,7 +6,7 @@ import garth
 from mcp.server.fastmcp import FastMCP
 
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 server = FastMCP("Garth - Garmin Connect", dependencies=["garth"], version=__version__)
 
@@ -50,6 +50,19 @@ def get_daily_stress(
     If no days are provided, 1 day will be used.
     """
     return garth.DailyStress.list(end_date, days)
+
+
+@server.tool()
+@requires_garth_session
+def get_daily_intensity_minutes(
+    end_date: date | None = None, days: int = 1
+) -> str | list[garth.DailyIntensityMinutes]:
+    """
+    Get daily intensity minutes data for a given date and number of days.
+    If no date is provided, the current date will be used.
+    If no days are provided, 1 day will be used.
+    """
+    return garth.DailyIntensityMinutes.list(end_date, days)
 
 
 def main():

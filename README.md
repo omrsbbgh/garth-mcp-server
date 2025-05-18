@@ -36,3 +36,4 @@ use the same PATH your shell does. On macOS, it's typically
 
 - sleep
 - stress
+- intensity minutes
