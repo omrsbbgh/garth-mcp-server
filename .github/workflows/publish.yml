@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/garth
+      url: https://pypi.org/p/garth-mcp-server
     permissions:
       id-token: write
 
@@ -20,7 +20,10 @@ jobs:
         with:
           python-version: "3.13"
 
-      - uses: ./.github/actions/setup-uv
+      - uses: astral-sh/setup-uv@v1
+        with:
+          version: "latest"
+          enable-cache: true
 
       - name: Build package
         run: |
