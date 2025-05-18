@@ -6,7 +6,7 @@ import garth
 from mcp.server.fastmcp import FastMCP
 
 
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 
 server = FastMCP("Garth - Garmin Connect", dependencies=["garth"], version=__version__)
 
@@ -25,7 +25,17 @@ def requires_garth_session(func):
 
 @server.tool()
 @requires_garth_session
-def get_nightly_sleep(
+def get_connectapi_endpoint(endpoint: str) -> str | dict | None:
+    """
+    Get the data from a given Garmin Connect API endpoint.
+    This is a generic tool that can be used to get data from any Garmin Connect API endpoint.
+    """
+    return garth.connectapi(endpoint)
+
+
+@server.tool()
+@requires_garth_session
+def nightly_sleep(
     end_date: date | None = None, nights: int = 1
 ) -> str | list[garth.SleepData]:
     """
@@ -41,7 +51,7 @@ def get_nightly_sleep(
 
 @server.tool()
 @requires_garth_session
-def get_daily_stress(
+def daily_stress(
     end_date: date | None = None, days: int = 1
 ) -> str | list[garth.DailyStress]:
     """
@@ -54,7 +64,7 @@ def get_daily_stress(
 
 @server.tool()
 @requires_garth_session
-def get_weekly_stress(
+def weekly_stress(
     end_date: date | None = None, weeks: int = 1
 ) -> str | list[garth.WeeklyStress]:
     """
@@ -67,7 +77,7 @@ def get_weekly_stress(
 
 @server.tool()
 @requires_garth_session
-def get_daily_intensity_minutes(
+def daily_intensity_minutes(
     end_date: date | None = None, days: int = 1
 ) -> str | list[garth.DailyIntensityMinutes]:
     """
@@ -85,6 +95,18 @@ def monthly_activity_summary(month: int, year: int) -> str | dict | None:
     Get the monthly activity summary for a given month and year.
     """
     return garth.connectapi(f"mobile-gateway/calendar/year/{year}/month/{month}")
+
+
+@server.tool()
+@requires_garth_session
+def snapshot(from_date: date, to_date: date) -> str | dict | None:
+    """
+    Get the snapshot for a given date range. This is a good starting point for
+    getting data for a given date range. It can be used in combination with
+    the get_connectapi_endpoint tool to get data from any Garmin Connect API
+    endpoint.
+    """
+    return garth.connectapi(f"mobile-gateway/snapshot/detail/v2/{from_date}/{to_date}")
 
 
 def main():

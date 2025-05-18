@@ -38,3 +38,4 @@ use the same PATH your shell does. On macOS, it's typically
 - stress (weekly and daily)
 - daily intensity minutes
 - monthly activity summary
+- snapshot
