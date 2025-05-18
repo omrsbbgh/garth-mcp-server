@@ -1,6 +1,12 @@
-# Garmin Connect MCP server
+# garth-mcp-server
 
-Based on [garth](https://github.com/matin/garth)
+[![PyPI version](
+    https://img.shields.io/pypi/v/garth-mcp-server.svg?logo=python&logoColor=brightgreen&color=brightgreen)](
+    https://pypi.org/project/garth-mcp-server/)
+
+Garmin Connect MCP server based on [garth](https://github.com/matin/garth).
+
+## Usage
 
 ![image](https://github.com/user-attachments/assets/14221e6f-5f65-4c21-bc7a-2147c1c9efc1)
 
