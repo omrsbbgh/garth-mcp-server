@@ -161,16 +161,16 @@ wheels = [
 
 [[package]]
 name = "garth"
-version = "0.5.7"
+version = "0.5.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "requests" },
     { name = "requests-oauthlib" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/da/bb/b8a54e28324bc7d9f61a26ebff619f9c81fb3fbbdab7d1b8103533739808/garth-0.5.7.tar.gz", hash = "sha256:0e5450dee0dccfe3a497e2768fb96dae06b8090b4d9fe81be988474c58dd7f72", size = 1757867, upload-time = "2025-04-24T18:16:12.083Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a0/6d/c007b1fd7d0276a9b7e807e12f9fe8193c5345bfdf21cb1a1a7dc544741d/garth-0.5.8.tar.gz", hash = "sha256:1e3536346d264741764729b120277dc75b4664f1cc59830444618f2f747f8f60", size = 1758094, upload-time = "2025-05-18T01:29:19.816Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4e/43/a3fab30abb5b860544e9de9c13d3a0018a9a86463af6b305686cf2c3d828/garth-0.5.7-py3-none-any.whl", hash = "sha256:c561fdbcf26c119ab3ea328aef1412b0d325510f42a08da2a58624063a58daf8", size = 24671, upload-time = "2025-04-24T18:16:10.302Z" },
+    { url = "https://files.pythonhosted.org/packages/64/f3/8008fcdfe0b547f48d6ef790d6befb5069f70c10eeebd4bb7150e5b93782/garth-0.5.8-py3-none-any.whl", hash = "sha256:574c060213d9c33a90fcf4079a713af5be5d8be2fd5f24599f974cc5fa667636", size = 24717, upload-time = "2025-05-18T01:29:18.206Z" },
 ]
 
 [[package]]
@@ -196,7 +196,7 @@ linting = [
 
 [package.metadata]
 requires-dist = [
-    { name = "garth", specifier = ">=0.5.7,<0.6.0" },
+    { name = "garth", specifier = ">=0.5.8,<0.6.0" },
     { name = "ipdb", marker = "extra == 'dev'" },
     { name = "ipykernel", marker = "extra == 'dev'" },
     { name = "ipython", marker = "extra == 'dev'" },
