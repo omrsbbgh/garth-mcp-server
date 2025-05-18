@@ -1,6 +1,8 @@
 # Garmin Connect MCP server
 
-based on [garth](https://github.com/matin/garth)
+Based on [garth](https://github.com/matin/garth)
+
+![image](https://github.com/user-attachments/assets/14221e6f-5f65-4c21-bc7a-2147c1c9efc1)
 
 ## Install
 
@@ -24,6 +26,7 @@ Make sure the path for the `uvx` command is fully scoped as MCP doesn't
 use the same PATH your shell does. On macOS, it's typically
 `/Users/{user}/.local/bin/uvx`.
 
-## Usage
+## Tools
 
-![image](https://github.com/user-attachments/assets/91581e3f-327e-4b01-9d8b-4fdb1f8e58fe)
+- sleep
+- stress
