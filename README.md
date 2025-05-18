@@ -35,5 +35,6 @@ use the same PATH your shell does. On macOS, it's typically
 ## Tools
 
 - sleep
-- stress
-- intensity minutes
+- stress (weekly and daily)
+- daily intensity minutes
+- monthly activity summary

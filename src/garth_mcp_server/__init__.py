@@ -6,7 +6,7 @@ import garth
 from mcp.server.fastmcp import FastMCP
 
 
-__version__ = "0.0.4"
+__version__ = "0.0.5"
 
 server = FastMCP("Garth - Garmin Connect", dependencies=["garth"], version=__version__)
 
@@ -54,6 +54,19 @@ def get_daily_stress(
 
 @server.tool()
 @requires_garth_session
+def get_weekly_stress(
+    end_date: date | None = None, weeks: int = 1
+) -> str | list[garth.WeeklyStress]:
+    """
+    Get weekly stress data for a given date and number of weeks.
+    If no date is provided, the current date will be used.
+    If no weeks are provided, 1 week will be used.
+    """
+    return garth.WeeklyStress.list(end_date, weeks)
+
+
+@server.tool()
+@requires_garth_session
 def get_daily_intensity_minutes(
     end_date: date | None = None, days: int = 1
 ) -> str | list[garth.DailyIntensityMinutes]:
@@ -63,6 +76,15 @@ def get_daily_intensity_minutes(
     If no days are provided, 1 day will be used.
     """
     return garth.DailyIntensityMinutes.list(end_date, days)
+
+
+@server.tool()
+@requires_garth_session
+def monthly_activity_summary(month: int, year: int) -> str | dict | None:
+    """
+    Get the monthly activity summary for a given month and year.
+    """
+    return garth.connectapi(f"mobile-gateway/calendar/year/{year}/month/{month}")
 
 
 def main():
