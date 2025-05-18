@@ -13,12 +13,16 @@ based on [garth](https://github.com/matin/garth)
         "garth-mcp-server"
       ],
       "env": {
-        "GARTH_TOKEN": "<GARTH_TOKEN_STRING from garth.client.dumps()>"
+        "GARTH_TOKEN": "<output of `uvx garth login`>"
       }
     }
   }
 }
 ```
+
+Make sure the path for the `uvx` command is fully scoped as MCP doesn't
+use the same PATH your shell does. On macOS, it's typically
+`/Users/{user}/.local/bin/uvx`.
 
 ## Usage
 
