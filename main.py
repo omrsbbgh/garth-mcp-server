@@ -4,13 +4,13 @@ from functools import wraps
 from urllib.parse import urlencode
 
 import garth
-from mcp.server.fastmcp import FastMCP
-
+from fastmcp import FastMCP
 
 server = FastMCP("Garth - Garmin Connect", dependencies=["garth"])
 
 
 def requires_garth_session(func):
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         token = os.getenv("GARTH_TOKEN")
@@ -46,8 +46,8 @@ def user_settings() -> str | garth.UserSettings:
 @server.tool()
 @requires_garth_session
 def weekly_intensity_minutes(
-    end_date: date | None = None, weeks: int = 1
-) -> str | list[garth.WeeklyIntensityMinutes]:
+        end_date: date | None = None,
+        weeks: int = 1) -> str | list[garth.WeeklyIntensityMinutes]:
     """
     Get weekly intensity minutes data for a given date and number of weeks.
     If no date is provided, the current date will be used.
@@ -59,8 +59,8 @@ def weekly_intensity_minutes(
 @server.tool()
 @requires_garth_session
 def daily_body_battery(
-    end_date: date | None = None, days: int = 1
-) -> str | list[garth.DailyBodyBatteryStress]:
+        end_date: date | None = None,
+        days: int = 1) -> str | list[garth.DailyBodyBatteryStress]:
     """
     Get daily body battery data for a given date and number of days.
     If no date is provided, the current date will be used.
@@ -71,9 +71,8 @@ def daily_body_battery(
 
 @server.tool()
 @requires_garth_session
-def daily_hydration(
-    end_date: date | None = None, days: int = 1
-) -> str | list[garth.DailyHydration]:
+def daily_hydration(end_date: date | None = None,
+                    days: int = 1) -> str | list[garth.DailyHydration]:
     """
     Get daily hydration data for a given date and number of days.
     If no date is provided, the current date will be used.
@@ -84,9 +83,8 @@ def daily_hydration(
 
 @server.tool()
 @requires_garth_session
-def daily_steps(
-    end_date: date | None = None, days: int = 1
-) -> str | list[garth.DailySteps]:
+def daily_steps(end_date: date | None = None,
+                days: int = 1) -> str | list[garth.DailySteps]:
     """
     Get daily steps data for a given date and number of days.
     If no date is provided, the current date will be used.
@@ -97,9 +95,8 @@ def daily_steps(
 
 @server.tool()
 @requires_garth_session
-def weekly_steps(
-    end_date: date | None = None, weeks: int = 1
-) -> str | list[garth.WeeklySteps]:
+def weekly_steps(end_date: date | None = None,
+                 weeks: int = 1) -> str | list[garth.WeeklySteps]:
     """
     Get weekly steps data for a given date and number of weeks.
     If no date is provided, the current date will be used.
@@ -110,9 +107,8 @@ def weekly_steps(
 
 @server.tool()
 @requires_garth_session
-def daily_hrv(
-    end_date: date | None = None, days: int = 1
-) -> str | list[garth.DailyHRV]:
+def daily_hrv(end_date: date | None = None,
+              days: int = 1) -> str | list[garth.DailyHRV]:
     """
     Get daily heart rate variability data for a given date and number of days.
     If no date is provided, the current date will be used.
@@ -123,7 +119,8 @@ def daily_hrv(
 
 @server.tool()
 @requires_garth_session
-def hrv_data(end_date: date | None = None, days: int = 1) -> str | list[garth.HRVData]:
+def hrv_data(end_date: date | None = None,
+             days: int = 1) -> str | list[garth.HRVData]:
     """
     Get detailed HRV data for a given date and number of days.
     If no date is provided, the current date will be used.
@@ -134,9 +131,8 @@ def hrv_data(end_date: date | None = None, days: int = 1) -> str | list[garth.HR
 
 @server.tool()
 @requires_garth_session
-def daily_sleep(
-    end_date: date | None = None, days: int = 1
-) -> str | list[garth.DailySleep]:
+def daily_sleep(end_date: date | None = None,
+                days: int = 1) -> str | list[garth.DailySleep]:
     """
     Get daily sleep summary data for a given date and number of days.
     If no date is provided, the current date will be used.
@@ -150,9 +146,8 @@ def daily_sleep(
 
 @server.tool()
 @requires_garth_session
-def get_activities(
-    start_date: str | None = None, limit: int | None = None
-) -> str | dict | None:
+def get_activities(start_date: str | None = None,
+                   limit: int | None = None) -> str | dict | None:
     """
     Get list of activities from Garmin Connect.
     start_date: Start date for activities (YYYY-MM-DD format)
@@ -177,7 +172,8 @@ def get_activities_by_date(date: str) -> str | dict | None:
     Get activities for a specific date from Garmin Connect.
     date: Date for activities (YYYY-MM-DD format)
     """
-    return garth.connectapi(f"wellness-service/wellness/dailySummaryChart/{date}")
+    return garth.connectapi(
+        f"wellness-service/wellness/dailySummaryChart/{date}")
 
 
 @server.tool()
@@ -231,7 +227,8 @@ def get_respiration_data(date: str) -> str | dict | None:
     Get respiration data from Garmin Connect.
     date: Date for respiration data (YYYY-MM-DD format)
     """
-    return garth.connectapi(f"wellness-service/wellness/dailyRespiration/{date}")
+    return garth.connectapi(
+        f"wellness-service/wellness/dailyRespiration/{date}")
 
 
 @server.tool()
@@ -251,7 +248,8 @@ def get_blood_pressure(date: str) -> str | dict | None:
     Get blood pressure readings from Garmin Connect.
     date: Date for blood pressure data (YYYY-MM-DD format)
     """
-    return garth.connectapi(f"wellness-service/wellness/dailyBloodPressure/{date}")
+    return garth.connectapi(
+        f"wellness-service/wellness/dailyBloodPressure/{date}")
 
 
 @server.tool()
@@ -271,8 +269,7 @@ def get_device_settings(device_id: str) -> str | dict | None:
     device_id: Device ID from Garmin Connect
     """
     return garth.connectapi(
-        f"device-service/deviceservice/device-info/settings/{device_id}"
-    )
+        f"device-service/deviceservice/device-info/settings/{device_id}")
 
 
 @server.tool()
@@ -306,9 +303,9 @@ def get_connectapi_endpoint(endpoint: str) -> str | dict | None:
 
 @server.tool()
 @requires_garth_session
-def nightly_sleep(
-    end_date: date | None = None, nights: int = 1, sleep_movement: bool = False
-) -> str | list[garth.SleepData]:
+def nightly_sleep(end_date: date | None = None,
+                  nights: int = 1,
+                  sleep_movement: bool = False) -> str | list[garth.SleepData]:
     """
     Get sleep stats for a given date and number of nights.
     If no date is provided, the current date will be used.
@@ -326,9 +323,8 @@ def nightly_sleep(
 
 @server.tool()
 @requires_garth_session
-def daily_stress(
-    end_date: date | None = None, days: int = 1
-) -> str | list[garth.DailyStress]:
+def daily_stress(end_date: date | None = None,
+                 days: int = 1) -> str | list[garth.DailyStress]:
     """
     Get daily stress data for a given date and number of days.
     If no date is provided, the current date will be used.
@@ -339,9 +335,8 @@ def daily_stress(
 
 @server.tool()
 @requires_garth_session
-def weekly_stress(
-    end_date: date | None = None, weeks: int = 1
-) -> str | list[garth.WeeklyStress]:
+def weekly_stress(end_date: date | None = None,
+                  weeks: int = 1) -> str | list[garth.WeeklyStress]:
     """
     Get weekly stress data for a given date and number of weeks.
     If no date is provided, the current date will be used.
@@ -353,8 +348,8 @@ def weekly_stress(
 @server.tool()
 @requires_garth_session
 def daily_intensity_minutes(
-    end_date: date | None = None, days: int = 1
-) -> str | list[garth.DailyIntensityMinutes]:
+        end_date: date | None = None,
+        days: int = 1) -> str | list[garth.DailyIntensityMinutes]:
     """
     Get daily intensity minutes data for a given date and number of days.
     If no date is provided, the current date will be used.
@@ -369,7 +364,8 @@ def monthly_activity_summary(month: int, year: int) -> str | dict | None:
     """
     Get the monthly activity summary for a given month and year.
     """
-    return garth.connectapi(f"mobile-gateway/calendar/year/{year}/month/{month}")
+    return garth.connectapi(
+        f"mobile-gateway/calendar/year/{year}/month/{month}")
 
 
 @server.tool()
@@ -381,4 +377,5 @@ def snapshot(from_date: date, to_date: date) -> str | dict | None:
     the get_connectapi_endpoint tool to get data from any Garmin Connect API
     endpoint.
     """
-    return garth.connectapi(f"mobile-gateway/snapshot/detail/v2/{from_date}/{to_date}")
+    return garth.connectapi(
+        f"mobile-gateway/snapshot/detail/v2/{from_date}/{to_date}")
