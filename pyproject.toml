@@ -9,7 +9,7 @@ authors = [
 ]
 dependencies = [
     "garth>=0.5.14,<0.6.0",
-    "mcp>=1.9.0,<2.0.0",
+    "fastmcp>=0.1.0",
 ]
 license = {text = "MIT"}
 classifiers = [
@@ -27,8 +27,7 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/garth_mcp_server/__init__.py"
 
-[project.scripts]
-garth-mcp-server = "garth_mcp_server:main"
+
 
 [project.optional-dependencies]
 dev = [

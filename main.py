@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 import garth
 from fastmcp import FastMCP
 
-server = FastMCP("Garth - Garmin Connect", dependencies=["garth"])
+server = FastMCP("Garth - Garmin Connect")
 
 
 def requires_garth_session(func):
